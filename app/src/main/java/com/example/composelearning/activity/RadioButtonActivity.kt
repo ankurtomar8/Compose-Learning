@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.example.composelearning.radioButton.RadioButtonNew
+import com.example.composelearning.radioButton.RadioButtonGroup
 
 class RadioButtonActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,11 +17,13 @@ class RadioButtonActivity : ComponentActivity(){
         setContent {
             MaterialTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    var selected by remember { mutableStateOf(false) }
-                    RadioButtonNew(
-                        selected = selected,
-                        onClick = { selected = !selected },
-                        label = "Custom Radio Button"
+                    val radioOptions = listOf("Option 1", "Option 2", "Option 3", "Option 4")
+                    var selectedOption by remember { mutableStateOf(radioOptions[0]) }
+                    
+                    RadioButtonGroup(
+                        options = radioOptions,
+                        selectedOption = selectedOption,
+                        onOptionSelected = { selectedOption = it }
                     )
                 }
             }
