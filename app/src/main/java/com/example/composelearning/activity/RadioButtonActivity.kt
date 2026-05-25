@@ -18,7 +18,7 @@ class RadioButtonActivity : ComponentActivity(){
             MaterialTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     val radioOptions = listOf("Option 1", "Option 2", "Option 3", "Option 4")
-                    var selectedOption by remember { mutableStateOf(radioOptions[0]) }
+                    var selectedOption by remember { mutableStateOf(radioOptions[2]) }
                     
                     RadioButtonGroup(
                         options = radioOptions,
