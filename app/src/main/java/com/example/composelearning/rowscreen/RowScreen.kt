@@ -1,6 +1,5 @@
 package com.example.composelearning.rowscreen
 
-import android.R.id.bold
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
