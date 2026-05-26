@@ -29,6 +29,7 @@
         <activity android:name=".activity.RowViewActivity" android:exported="false" />
         <activity android:name=".activity.RecyclerViewActivity" android:exported="false" />
         <activity android:name=".activity.RadioButtonActivity" android:exported="false" />
+        <activity android:name=".activity.PickImageActivity" android:exported="false" />
         <activity android:name=".activity.DialogActivity" android:exported="false" />
         <activity android:name=".navigation.navigation.AnotherActivity" android:exported="false" />
 
