@@ -65,7 +65,8 @@ fun DashboardScreen(onNavigate: (Class<out ComponentActivity>) -> Unit) {
             "Column View Screen" to ColumnViewActivity::class.java,
             "Navigation Screen" to NavigationViewActivity::class.java,
             "Check Box Screen" to CheckBoxActivity::class.java,
-            "Dialog Screen" to DialogActivity::class.java
+            "Dialog Screen" to DialogActivity::class.java,
+            "Pick Image Screen" to PickImageActivity::class.java
         )
 
         activities.forEach { (label, activityClass) ->
