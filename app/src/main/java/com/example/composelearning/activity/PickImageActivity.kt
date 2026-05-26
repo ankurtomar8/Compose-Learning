@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import com.example.composelearning.packimagefromgallery.PickImageFromGallery
+import com.example.composelearning.packimagefromgallery.PickImageScreen
 import com.example.composelearning.ui.theme.ComposeLearningTheme
 
 class PickImageActivity : ComponentActivity() {
@@ -14,7 +14,7 @@ class PickImageActivity : ComponentActivity() {
         setContent {
             ComposeLearningTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    PickImageFromGallery()
+                    PickImageScreen()
                 }
             }
         }
