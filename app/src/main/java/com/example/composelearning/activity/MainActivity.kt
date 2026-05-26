@@ -14,29 +14,50 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.composelearning.ui.theme.ComposeLearningTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeLearningTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    DashboardScreen(
-                        onNavigate = { activityClass ->
-                            startActivity(Intent(this, activityClass))
-                        }
-                    )
+                val snackbarHostState = remember { SnackbarHostState() }
+                val scope = rememberCoroutineScope()
+
+                Scaffold(
+                    snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+                ) { innerPadding ->
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        DashboardScreen(
+                            onNavigate = { activityClass ->
+                                startActivity(Intent(this, activityClass))
+                            },
+                            onShowSnackbar = { message ->
+                                scope.launch {
+                                    snackbarHostState.showSnackbar(message)
+                                }
+                            }
+                        )
+                    }
                 }
             }
         }
@@ -44,7 +65,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun DashboardScreen(onNavigate: (Class<out ComponentActivity>) -> Unit) {
+fun DashboardScreen(
+    onNavigate: (Class<out ComponentActivity>) -> Unit,
+    onShowSnackbar: (String) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +82,6 @@ fun DashboardScreen(onNavigate: (Class<out ComponentActivity>) -> Unit) {
 
         // List of all your activities
         val activities = listOf(
-
             "Radio Button Screen" to RadioButtonActivity::class.java,
             "Recycler View Screen" to RecyclerViewActivity::class.java,
             "Row View Screen" to RowViewActivity::class.java,
@@ -66,7 +89,8 @@ fun DashboardScreen(onNavigate: (Class<out ComponentActivity>) -> Unit) {
             "Navigation Screen" to NavigationViewActivity::class.java,
             "Check Box Screen" to CheckBoxActivity::class.java,
             "Dialog Screen" to DialogActivity::class.java,
-            "Pick Image Screen" to PickImageActivity::class.java
+            "Pick Image Screen" to PickImageActivity::class.java,
+            "Snackbar Screen" to SnackBarActivity::class.java
         )
 
         activities.forEach { (label, activityClass) ->
@@ -78,6 +102,16 @@ fun DashboardScreen(onNavigate: (Class<out ComponentActivity>) -> Unit) {
             ) {
                 Text(text = label)
             }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = { onShowSnackbar("This is a Snackbar from MainActivity!") },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
+        ) {
+            Text(text = "Show Snackbar")
         }
     }
 }
