@@ -33,6 +33,16 @@
         <activity android:name=".activity.DialogActivity" android:exported="false" />
         <activity android:name=".navigation.navigation.AnotherActivity" android:exported="false" />
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.composelearning.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>
