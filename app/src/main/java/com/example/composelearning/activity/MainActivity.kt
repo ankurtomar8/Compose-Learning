@@ -90,7 +90,8 @@ fun DashboardScreen(
             "Check Box Screen" to CheckBoxActivity::class.java,
             "Dialog Screen" to DialogActivity::class.java,
             "Pick Image Screen" to PickImageActivity::class.java,
-            "Snackbar Screen" to SnackBarActivity::class.java
+            "Snackbar Screen" to SnackBarActivity::class.java,
+            "Counter Screen" to CounterActivity::class.java
         )
 
         activities.forEach { (label, activityClass) ->
