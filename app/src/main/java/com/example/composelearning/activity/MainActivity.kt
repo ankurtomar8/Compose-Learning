@@ -91,7 +91,8 @@ fun DashboardScreen(
             "Dialog Screen" to DialogActivity::class.java,
             "Pick Image Screen" to PickImageActivity::class.java,
             "Snackbar Screen" to SnackBarActivity::class.java,
-            "Counter Screen" to CounterActivity::class.java
+            "Counter Screen" to CounterActivity::class.java,
+            "MQTT Demo Screen" to MqttActivity::class.java
         )
 
         activities.forEach { (label, activityClass) ->

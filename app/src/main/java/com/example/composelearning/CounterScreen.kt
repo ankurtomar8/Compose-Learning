@@ -35,7 +35,7 @@ fun CounterScreen(
                 Text("Decrement")
             }
             Spacer(modifier = Modifier.width(16.dp))
-            Button(onClick = { myViewModel.incrementCounter() }) {
+            Button({myViewModel.incrementCounter()}){
                 Text("Increment")
             }
         }
